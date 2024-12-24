@@ -1,6 +1,8 @@
 import java.util.Arrays;
 public class SubsetSum {
     /**
+     * Given an array arr of n integers and an integer target,
+     * determine if there is a subset of the given array with a sum equal to the given target.
      * Input: arr = [1, 2, 7, 3], target = 6
      * Output: True
      * Explanation: There is a subset (1, 2, 3) with sum 6.
