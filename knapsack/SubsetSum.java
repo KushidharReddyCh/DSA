@@ -45,12 +45,37 @@ public class SubsetSum {
     public static boolean subsetSum2(int arr[], int n, int target){
         boolean dp[] = new boolean[target + 1];
         Arrays.fill(dp, false);
-        dp[0] = false;
+        dp[0] = true; // bug fix for 0 in input case
         for(int i = 1; i <= n; i++){
-            dp[0] = true;
-            for(int j = target; j >=0; j--){
+            for(int j = target; j >= 0; j--){
                 if(j >= arr[i - 1]){
                     dp[j] = dp[j] || (dp[j - arr[i - 1]]);
+                }
+            }
+        }
+        return dp[target];
+    }
+
+    /*
+    * Given an array arr of n integers and an integer K,
+    * count the number of subsets of the given array that have a sum equal to K.
+    *  Return the result modulo 109+7.
+    * Input: arr = [2, 3, 5, 16, 8, 10], K = 10
+    * Output: 3
+    * Explanation: The subsets are [2, 8], [10], and [2, 3, 5].
+    * */
+
+    public static final int MOD = (int)Math.pow(10, 9) + 7;
+    public static int findWays(int arr[], int target) {
+        int n = arr.length;
+        int dp[] = new int[target + 1];
+        dp[0] = 1; // CASE IS IMP IF 0 EXISTS IN THE INPUT
+        for(int i = 1; i <= n; i++){
+            for(int j = target; j >= 0; j--){
+                if(j >= arr[i - 1]){
+                    dp[j] += dp[j - arr[i - 1]];
+                    dp[j] = dp[j] % MOD;
+
                 }
             }
         }
